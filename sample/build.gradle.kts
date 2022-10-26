@@ -1,6 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    val gradlePlugin = org.fog_rock.buildsrc.PluginConfigs.Gradle
+    val kotlinPlugin = org.fog_rock.buildsrc.PluginConfigs.Kotlin
+    id(gradlePlugin.APP_NAME)
+    id(kotlinPlugin.NAME)
 }
 
 android {
