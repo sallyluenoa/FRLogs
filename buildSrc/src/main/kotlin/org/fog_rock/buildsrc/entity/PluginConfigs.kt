@@ -1,4 +1,4 @@
-package org.fog_rock.buildsrc
+package org.fog_rock.buildsrc.entity
 
 object PluginConfigs {
 

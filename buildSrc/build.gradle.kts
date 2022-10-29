@@ -3,7 +3,11 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation("gradle.plugin.com.google.gradle:osdetector-gradle-plugin:1.7.1")
 }
 
 java {

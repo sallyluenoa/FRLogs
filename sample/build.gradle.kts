@@ -1,6 +1,6 @@
 plugins {
-    val gradlePlugin = org.fog_rock.buildsrc.PluginConfigs.Gradle
-    val kotlinPlugin = org.fog_rock.buildsrc.PluginConfigs.Kotlin
+    val gradlePlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Gradle
+    val kotlinPlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Kotlin
     id(gradlePlugin.APP_NAME)
     id(kotlinPlugin.NAME)
 }
