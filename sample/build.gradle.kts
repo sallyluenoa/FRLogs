@@ -1,3 +1,5 @@
+import org.fog_rock.buildsrc.entity.ProjConfigs
+
 plugins {
     val gradlePlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Gradle
     val kotlinPlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Kotlin
@@ -6,31 +8,34 @@ plugins {
 }
 
 android {
-    namespace = "org.fog_rock.frlogssample"
-    compileSdk = 33
+    namespace = ProjConfigs.SMP_PACKAGE_NAME
+    compileSdk = ProjConfigs.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "org.fog_rock.frlogssample"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = ProjConfigs.SMP_PACKAGE_NAME
+        minSdk = ProjConfigs.MIN_SDK
+        targetSdk = ProjConfigs.TARGET_SDK
+        versionCode = ProjConfigs.versionCode(project)
+        versionName = ProjConfigs.versionName(project)
+        base {
+            archivesName.set(ProjConfigs.archivesName(project))
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        getByName("release") {
+        getByName(ProjConfigs.RELEASE) {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = ProjConfigs.JAVA_VERSION
+        targetCompatibility = ProjConfigs.JAVA_VERSION
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = ProjConfigs.KOTLIN_JVM_TARGET
     }
 }
 
