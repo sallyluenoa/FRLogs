@@ -1,3 +1,4 @@
+import org.fog_rock.buildsrc.entity.DepsConfigs
 import org.fog_rock.buildsrc.entity.ProjConfigs
 
 plugins {
@@ -39,10 +40,10 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(DepsConfigs.AndroidX.CORE_KTX.path)
+    implementation(DepsConfigs.AndroidX.APP_COMPAT.path)
+    implementation(DepsConfigs.Google.MATERIAL.path)
+    testImplementation(DepsConfigs.Junit.JUNIT.path)
+    androidTestImplementation(DepsConfigs.AndroidX.Test.JUNIT.path)
+    androidTestImplementation(DepsConfigs.AndroidX.Test.ESPRESSO_CORE.path)
 }
