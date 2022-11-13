@@ -2,10 +2,9 @@ import org.fog_rock.buildsrc.entity.DepsConfigs
 import org.fog_rock.buildsrc.entity.ProjConfigs
 
 plugins {
-    val gradlePlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Gradle
-    val kotlinPlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Kotlin
-    id(gradlePlugin.APP_NAME)
-    id(kotlinPlugin.NAME)
+    val plugins = org.fog_rock.buildsrc.entity.PluginConfigs
+    id(plugins.APP_GRADLE.name)
+    id(plugins.KOTLIN.name)
 }
 
 android {
@@ -42,10 +41,10 @@ android {
 
 dependencies {
 
-    implementation(DepsConfigs.AndroidX.CORE_KTX.path)
-    implementation(DepsConfigs.AndroidX.APP_COMPAT.path)
-    implementation(DepsConfigs.Google.MATERIAL.path)
-    testImplementation(DepsConfigs.Junit.JUNIT.path)
-    androidTestImplementation(DepsConfigs.AndroidX.Test.JUNIT.path)
-    androidTestImplementation(DepsConfigs.AndroidX.Test.ESPRESSO_CORE.path)
+    implementation(DepsConfigs.AndroidX.CORE_KTX.value)
+    implementation(DepsConfigs.AndroidX.APP_COMPAT.value)
+    implementation(DepsConfigs.Google.MATERIAL.value)
+    testImplementation(DepsConfigs.Junit.JUNIT.value)
+    androidTestImplementation(DepsConfigs.AndroidX.Test.JUNIT.value)
+    androidTestImplementation(DepsConfigs.AndroidX.Test.ESPRESSO_CORE.value)
 }

@@ -2,11 +2,10 @@
 plugins {
     // Avoid sync errors due to gradle issues.
     // @see https://github.com/gradle/gradle/issues/9270
-    val gradlePlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Gradle
-    val kotlinPlugin = org.fog_rock.buildsrc.entity.PluginConfigs.Kotlin
-    id(gradlePlugin.APP_NAME) version gradlePlugin.VERSION apply false
-    id(gradlePlugin.LIB_NAME) version gradlePlugin.VERSION apply false
-    id(kotlinPlugin.NAME) version kotlinPlugin.VERSION apply false
+    val plugins = org.fog_rock.buildsrc.entity.PluginConfigs
+    id(plugins.APP_GRADLE.name) version plugins.APP_GRADLE.version apply false
+    id(plugins.LIB_GRADLE.name) version plugins.LIB_GRADLE.version apply false
+    id(plugins.KOTLIN.name) version plugins.KOTLIN.version apply false
     // Custom Plugin in buildSrc
     clean_plugins
 }
