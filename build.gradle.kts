@@ -2,7 +2,7 @@
 plugins {
     // Avoid sync errors due to gradle issues.
     // @see https://github.com/gradle/gradle/issues/9270
-    val plugins = org.fog_rock.buildsrc.entity.PluginConfigs
+    val plugins = org.fog_rock.buildsrc.configs.PluginConfigs
     id(plugins.APP_GRADLE.name) version plugins.APP_GRADLE.version apply false
     id(plugins.LIB_GRADLE.name) version plugins.LIB_GRADLE.version apply false
     id(plugins.KOTLIN.name) version plugins.KOTLIN.version apply false

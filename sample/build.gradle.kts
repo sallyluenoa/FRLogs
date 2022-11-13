@@ -1,8 +1,8 @@
-import org.fog_rock.buildsrc.entity.DepsConfigs
-import org.fog_rock.buildsrc.entity.ProjConfigs
+import org.fog_rock.buildsrc.configs.DepsConfigs
+import org.fog_rock.buildsrc.configs.ProjConfigs
 
 plugins {
-    val plugins = org.fog_rock.buildsrc.entity.PluginConfigs
+    val plugins = org.fog_rock.buildsrc.configs.PluginConfigs
     id(plugins.APP_GRADLE.name)
     id(plugins.KOTLIN.name)
 }
@@ -18,7 +18,7 @@ android {
         versionCode = ProjConfigs.versionCode(project)
         versionName = ProjConfigs.versionName(project)
         base {
-            archivesName.set(ProjConfigs.archivesName(project))
+            archivesName.set(ProjConfigs.sampleArchiveName(project))
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

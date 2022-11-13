@@ -1,16 +1,20 @@
-package org.fog_rock.buildsrc.entity
+package org.fog_rock.buildsrc.configs
 
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import java.util.*
 
 object ProjConfigs {
 
     const val NAME = "FRLogs"
-    const val DOMAIN = "org.fog_rock"
-    const val LIB_NAME = "frlogs"
-    const val SMP_NAME = "${LIB_NAME}sample"
-    const val LIB_PACKAGE_NAME = "${DOMAIN}.${LIB_NAME}"
-    const val SMP_PACKAGE_NAME = "${DOMAIN}.${SMP_NAME}"
+    const val DOMAIN = "org.fog-rock"
+
+    val PACKAGE_DOMAIN get() = DOMAIN.replace('-', '_')
+    val SAMPLE_NAME get() = "${NAME}Sample"
+    val LIB_NAME get() = NAME.toLowerCase(Locale.ROOT)
+    val SMP_NAME get() = SAMPLE_NAME.toLowerCase(Locale.ROOT)
+    val LIB_PACKAGE_NAME get() = "${PACKAGE_DOMAIN}.${LIB_NAME}"
+    val SMP_PACKAGE_NAME get() = "${PACKAGE_DOMAIN}.${SMP_NAME}"
 
     const val COMPILE_SDK = 33
     const val TARGET_SDK = 33
@@ -23,9 +27,9 @@ object ProjConfigs {
     const val KOTLIN_JVM_TARGET = "11"
 
     private object Properties {
-        const val VERSION = "$LIB_PACKAGE_NAME.version"
-        const val VERSION_CODE = "$VERSION.code"
-        const val VERSION_NAME = "$VERSION.name"
+        val VERSION get() = "${LIB_PACKAGE_NAME}.version"
+        val VERSION_CODE get() = "${VERSION}.code"
+        val VERSION_NAME get() = "${VERSION}.name"
         const val DEFAULT_VERSION_CODE = 1
         const val DEFAULT_VERSION_NAME = "0.0.1-SNAPSHOT"
     }
@@ -44,6 +48,9 @@ object ProjConfigs {
             Properties.DEFAULT_VERSION_NAME
         }
 
-    fun archivesName(project: Project): String =
-        "$NAME-${versionName(project)}.${versionCode(project)}"
+    fun archiveName(project: Project): String =
+        "${NAME}-${versionName(project)}.${versionCode(project)}"
+
+    fun sampleArchiveName(project: Project): String =
+        "${SAMPLE_NAME}-${versionName(project)}.${versionCode(project)}"
 }

@@ -1,4 +1,4 @@
-package org.fog_rock.buildsrc.entity
+package org.fog_rock.buildsrc.configs.entity
 
 data class PluginInfo(
     val name: String,

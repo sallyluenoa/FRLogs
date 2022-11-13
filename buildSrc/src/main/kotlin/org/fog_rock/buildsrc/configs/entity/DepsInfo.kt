@@ -1,11 +1,11 @@
-package org.fog_rock.buildsrc.entity
+package org.fog_rock.buildsrc.configs.entity
 
 data class DepsInfo(
     private val group: String,
     private val name: String,
     private val version: String
 ) {
-    val value = "$group:$name:$version"
+    val value get() = "$group:$name:$version"
 
     constructor(
         group: String,

@@ -1,8 +1,8 @@
-import org.fog_rock.buildsrc.entity.DepsConfigs
-import org.fog_rock.buildsrc.entity.ProjConfigs
+import org.fog_rock.buildsrc.configs.DepsConfigs
+import org.fog_rock.buildsrc.configs.ProjConfigs
 
 plugins {
-    val plugins = org.fog_rock.buildsrc.entity.PluginConfigs
+    val plugins = org.fog_rock.buildsrc.configs.PluginConfigs
     id(plugins.LIB_GRADLE.name)
     id(plugins.KOTLIN.name)
 }
@@ -15,7 +15,7 @@ android {
         minSdk = ProjConfigs.MIN_SDK
         targetSdk = ProjConfigs.TARGET_SDK
         base {
-            archivesName.set(ProjConfigs.archivesName(project))
+            archivesName.set(ProjConfigs.archiveName(project))
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

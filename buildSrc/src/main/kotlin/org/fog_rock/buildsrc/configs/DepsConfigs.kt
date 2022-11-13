@@ -1,4 +1,6 @@
-package org.fog_rock.buildsrc.entity
+package org.fog_rock.buildsrc.configs
+
+import org.fog_rock.buildsrc.configs.entity.DepsInfo
 
 object DepsConfigs {
 
