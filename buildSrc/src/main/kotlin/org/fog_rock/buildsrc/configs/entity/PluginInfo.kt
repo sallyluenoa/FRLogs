@@ -16,10 +16,22 @@
 
 package org.fog_rock.buildsrc.configs.entity
 
+/**
+ * Data for a plugin.
+ * @param name A plugin name
+ * @param version A plugin version
+ */
 data class PluginInfo(
     val name: String,
     val version: String
 ) {
+    /**
+     * The secondary constructor.
+     * @param name A plugin name
+     * @param major A numeric value for the major version
+     * @param minor A numeric value for the minor version
+     * @param patch A numeric value for the patch version
+     */
     constructor(
         name: String,
         major: Int,

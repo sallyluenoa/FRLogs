@@ -16,13 +16,25 @@
 
 package org.fog_rock.buildsrc.configs.entity
 
+/**
+ * Data for a library dependency.
+ * @param group A namespace group
+ * @param name A library name
+ * @param version A library version
+ */
 data class DepsInfo(
     private val group: String,
     private val name: String,
     private val version: String
 ) {
-    val value get() = "$group:$name:$version"
-
+    /**
+     * The secondary constructor.
+     * @param group A namespace group
+     * @param name A library name
+     * @param major A numeric value for the major version
+     * @param minor A numeric value for the minor version
+     * @param patch A numeric value for the patch version
+     */
     constructor(
         group: String,
         name: String,
@@ -34,4 +46,9 @@ data class DepsInfo(
         name,
         VersionFormat(major, minor, patch).value
     )
+
+    /**
+     * Get a string value that conforms to the format of dependencies.
+     */
+    val value get() = "$group:$name:$version"
 }

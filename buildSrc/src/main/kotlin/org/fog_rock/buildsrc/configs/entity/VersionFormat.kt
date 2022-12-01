@@ -16,10 +16,19 @@
 
 package org.fog_rock.buildsrc.configs.entity
 
+/**
+ * Data for a version format.
+ * @param major A numeric value for the major version
+ * @param minor A numeric value for the minor version
+ * @param patch A numeric value for the patch version
+ */
 data class VersionFormat(
     private val major: Int,
     private val minor: Int,
     private val patch: Int
 ) {
+    /**
+     * Get a string value that conforms to the version format.
+     */
     val value get() = "$major.$minor.$patch"
 }

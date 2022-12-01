@@ -18,11 +18,17 @@ plugins {
     id("com.google.osdetector")
 }
 
+/**
+ * Clean all projects.
+ */
 val clean by tasks.registering {
     delete(rootProject.buildDir)
     dependsOn(cleanBuildSrc)
 }
 
+/**
+ * Clean a buildSrc project.
+ */
 val cleanBuildSrc by tasks.registering {
     project.exec {
         if (osdetector.os == "windows") {

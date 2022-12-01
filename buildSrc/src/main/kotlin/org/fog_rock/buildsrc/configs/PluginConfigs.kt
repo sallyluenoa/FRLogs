@@ -18,6 +18,9 @@ package org.fog_rock.buildsrc.configs
 
 import org.fog_rock.buildsrc.configs.entity.PluginInfo
 
+/**
+ * Configurations for plugins.
+ */
 object PluginConfigs {
 
     /**

@@ -20,6 +20,9 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import java.util.*
 
+/**
+ * Configurations for projects.
+ */
 object ProjConfigs {
 
     const val NAME = "FRLogs"
