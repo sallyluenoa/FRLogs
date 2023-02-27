@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-import org.fog_rock.buildsrc.configs.DepsConfigs
 import org.fog_rock.buildsrc.configs.ProjConfigs
 
 plugins {
-    val plugins = org.fog_rock.buildsrc.configs.PluginConfigs
-    id(plugins.APP_GRADLE.name)
-    id(plugins.KOTLIN.name)
+    alias(libs.plugins.android.app.gradle)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -56,11 +54,10 @@ android {
 }
 
 dependencies {
-
-    implementation(DepsConfigs.AndroidX.CORE_KTX.value)
-    implementation(DepsConfigs.AndroidX.APP_COMPAT.value)
-    implementation(DepsConfigs.Google.MATERIAL.value)
-    testImplementation(DepsConfigs.Junit.JUNIT.value)
-    androidTestImplementation(DepsConfigs.AndroidX.Test.JUNIT.value)
-    androidTestImplementation(DepsConfigs.AndroidX.Test.ESPRESSO_CORE.value)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.android.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
 }
