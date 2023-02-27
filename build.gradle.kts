@@ -18,5 +18,4 @@ plugins {
     alias(libs.plugins.android.app.gradle) apply false
     alias(libs.plugins.android.lib.gradle) apply false
     alias(libs.plugins.kotlin.android) apply false
-    clean_plugins
 }

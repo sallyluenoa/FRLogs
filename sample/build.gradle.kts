@@ -14,42 +14,41 @@
  * limitations under the License.
  */
 
-import org.fog_rock.buildsrc.configs.ProjConfigs
-
 plugins {
     alias(libs.plugins.android.app.gradle)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = ProjConfigs.SMP_PACKAGE_NAME
-    compileSdk = ProjConfigs.COMPILE_SDK
+    namespace = "org.fog_rock.frlogssample"
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = ProjConfigs.SMP_PACKAGE_NAME
-        minSdk = ProjConfigs.MIN_SDK
-        targetSdk = ProjConfigs.TARGET_SDK
-        versionCode = ProjConfigs.versionCode(project)
-        versionName = ProjConfigs.versionName(project)
+        applicationId = "org.fog_rock.frlogssample"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.defaultVersionCode.get().toInt()
+        versionName = libs.versions.defaultVersionName.get()
         base {
-            archivesName.set(ProjConfigs.sampleArchiveName(project))
+            archivesName.set("FRlogsSample-${libs.versions.defaultVersionName.get()}.${libs.versions.defaultVersionCode.get()}")
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        getByName(ProjConfigs.RELEASE) {
+        getByName(libs.versions.buildType.release.get()) {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    val javaVersion = JavaVersion.VERSION_11
     compileOptions {
-        sourceCompatibility = ProjConfigs.JAVA_VERSION
-        targetCompatibility = ProjConfigs.JAVA_VERSION
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
     kotlinOptions {
-        jvmTarget = ProjConfigs.KOTLIN_JVM_TARGET
+        jvmTarget = javaVersion.toString()
     }
 }
 
