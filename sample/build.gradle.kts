@@ -14,41 +14,55 @@
  * limitations under the License.
  */
 
+object ModuleConfigs {
+    const val module = "FRLogsSample"
+    const val domain = "org.fog-rock"
+    const val release = "release"
+    const val debug = "debug"
+    val javaVersion = JavaVersion.VERSION_11
+    val packageName get() = "${domain.replace('-', '_')}.${module.toLowerCase()}"
+
+    fun versionCode(project: Project): Int =
+        (project.findProperty("version.code") ?: "1").toString().toInt()
+
+    fun versionName(project: Project): String =
+        (project.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
+}
+
 plugins {
     alias(libs.plugins.android.app.gradle)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "org.fog_rock.frlogssample"
+    namespace = ModuleConfigs.packageName
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "org.fog_rock.frlogssample"
+        applicationId = ModuleConfigs.packageName
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = libs.versions.defaultVersionCode.get().toInt()
-        versionName = libs.versions.defaultVersionName.get()
+        versionCode = ModuleConfigs.versionCode(project)
+        versionName = ModuleConfigs.versionName(project)
         base {
-            archivesName.set("FRlogsSample-${libs.versions.defaultVersionName.get()}.${libs.versions.defaultVersionCode.get()}")
+            archivesName.set("${ModuleConfigs.module}-${ModuleConfigs.versionName(project)}.${ModuleConfigs.versionCode(project)}")
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        getByName(libs.versions.buildType.release.get()) {
+        getByName(ModuleConfigs.release) {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    val javaVersion = JavaVersion.VERSION_11
     compileOptions {
-        sourceCompatibility = javaVersion
-        targetCompatibility = javaVersion
+        sourceCompatibility = ModuleConfigs.javaVersion
+        targetCompatibility = ModuleConfigs.javaVersion
     }
     kotlinOptions {
-        jvmTarget = javaVersion.toString()
+        jvmTarget = ModuleConfigs.javaVersion.toString()
     }
 }
 

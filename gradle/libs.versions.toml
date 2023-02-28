@@ -3,10 +3,6 @@
 compileSdk = "33"
 targetSdk = "33"
 minSdk = "24"
-defaultVersionCode = "1"
-defaultVersionName = "0.0.1-SNAPSHOT"
-buildType-release = "release"
-buildType-debug = "debug"
 
 # For Plugins or Libraries
 androidx-appcompat = "1.5.1"
