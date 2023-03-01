@@ -28,6 +28,7 @@ object ModuleConfigs {
         (project.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
 }
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.app.gradle)
     alias(libs.plugins.kotlin.android)
