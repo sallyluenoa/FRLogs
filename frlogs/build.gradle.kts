@@ -19,7 +19,6 @@ object ModuleConfigs {
     const val domain = "org.fog-rock"
     const val release = "release"
     const val debug = "debug"
-    val javaVersion = JavaVersion.VERSION_11
     val packageName get() = "${domain.replace('-', '_')}.${module.toLowerCase()}"
 
     fun versionCode(project: Project): Int =
@@ -56,11 +55,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = ModuleConfigs.javaVersion
-        targetCompatibility = ModuleConfigs.javaVersion
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = ModuleConfigs.javaVersion.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
