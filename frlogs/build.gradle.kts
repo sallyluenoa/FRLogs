@@ -14,24 +14,34 @@
  * limitations under the License.
  */
 
-import org.fog_rock.buildsrc.configs.DepsConfigs
-import org.fog_rock.buildsrc.configs.ProjConfigs
+object ModuleConfigs {
+    const val module = "FRLogs"
+    const val domain = "org.fog-rock"
+    const val release = "release"
+    const val debug = "debug"
+    val packageName get() = "${domain.replace('-', '_')}.${module.toLowerCase()}"
 
+    fun versionCode(project: Project): Int =
+        (project.findProperty("version.code") ?: "1").toString().toInt()
+
+    fun versionName(project: Project): String =
+        (project.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
+}
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    val plugins = org.fog_rock.buildsrc.configs.PluginConfigs
-    id(plugins.LIB_GRADLE.name)
-    id(plugins.KOTLIN.name)
+    alias(libs.plugins.android.lib.gradle)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = ProjConfigs.LIB_PACKAGE_NAME
-    compileSdk = ProjConfigs.COMPILE_SDK
+    namespace = ModuleConfigs.packageName
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = ProjConfigs.MIN_SDK
-        targetSdk = ProjConfigs.TARGET_SDK
+        minSdk = libs.versions.minSdk.get().toInt()
         base {
-            archivesName.set(ProjConfigs.archiveName(project))
+            archivesName.set("${ModuleConfigs.module}-${ModuleConfigs.versionName(project)}.${ModuleConfigs.versionCode(project)}")
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -39,26 +49,25 @@ android {
     }
 
     buildTypes {
-        getByName(ProjConfigs.RELEASE) {
+        getByName(ModuleConfigs.release) {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = ProjConfigs.JAVA_VERSION
-        targetCompatibility = ProjConfigs.JAVA_VERSION
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = ProjConfigs.KOTLIN_JVM_TARGET
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 dependencies {
-
-    implementation(DepsConfigs.AndroidX.CORE_KTX.value)
-    implementation(DepsConfigs.AndroidX.APP_COMPAT.value)
-    implementation(DepsConfigs.Google.MATERIAL.value)
-    testImplementation(DepsConfigs.Junit.JUNIT.value)
-    androidTestImplementation(DepsConfigs.AndroidX.Test.JUNIT.value)
-    androidTestImplementation(DepsConfigs.AndroidX.Test.ESPRESSO_CORE.value)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.android.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
 }
