@@ -32,6 +32,7 @@ object ModuleConfigs {
 plugins {
     alias(libs.plugins.android.lib.gradle)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.dokka)
 }
 
 android {

@@ -12,6 +12,7 @@ androidx-junit = "1.1.5"
 com-android-gradle = "7.4.2"
 com-google-material = "1.8.0"
 junit = "4.13.2"
+org-jetbrains-dokka = "1.8.10"
 org-jetbrains-kotlin = "1.8.10"
 
 [libraries]
@@ -26,3 +27,4 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 android-app-gradle = { id = "com.android.application", version.ref = "com-android-gradle" }
 android-lib-gradle = { id = "com.android.library", version.ref = "com-android-gradle" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }
+kotlin-dokka = { id = "org.jetbrains.dokka", version.ref = "org-jetbrains-dokka" }
