@@ -20,7 +20,7 @@ import org.fog_rock.frlogs.provider.FRDefaultLogProvider
 import org.fog_rock.frlogs.provider.FRLogProvider
 
 /**
- * A class to output log messages.
+ * A singleton object for outputting log messages by calling the log provider internally.
  */
 object FRLog {
 

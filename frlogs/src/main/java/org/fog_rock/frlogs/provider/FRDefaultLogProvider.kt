@@ -20,8 +20,8 @@ import android.util.Log
 
 /**
  * A class of the default log provider.
- * Methods of this class call methods of Android standard logging class `android.util.Log`.
- * The logs can be viewed in the Logcat.
+ * Methods of this class call methods of Android standard logging class `android.util.Log`,
+ * then the logs can be viewed in the Logcat.
  */
 open class FRDefaultLogProvider : FRLogProvider {
 
