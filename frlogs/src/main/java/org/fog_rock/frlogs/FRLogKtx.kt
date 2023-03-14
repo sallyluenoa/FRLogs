@@ -28,7 +28,7 @@ val Any.TAG: String get() = this::class.java.simpleName
  * @param tr An exception if necessary
  * @see org.fog_rock.frlogs.FRLog.v
  */
-fun Any.logV(msg: String, tr: Throwable? = null) = FRLog.v(TAG, msg, tr)
+fun Any.frLogV(msg: String, tr: Throwable? = null) = FRLog.v(TAG, msg, tr)
 
 /**
  * Output a "DEBUG" log message.
@@ -37,7 +37,7 @@ fun Any.logV(msg: String, tr: Throwable? = null) = FRLog.v(TAG, msg, tr)
  * @param tr An exception if necessary
  * @see org.fog_rock.frlogs.FRLog.d
  */
-fun Any.logD(msg: String, tr: Throwable? = null) = FRLog.d(TAG, msg, tr)
+fun Any.frLogD(msg: String, tr: Throwable? = null) = FRLog.d(TAG, msg, tr)
 
 /**
  * Output a "INFO" log message.
@@ -46,7 +46,7 @@ fun Any.logD(msg: String, tr: Throwable? = null) = FRLog.d(TAG, msg, tr)
  * @param tr An exception if necessary
  * @see org.fog_rock.frlogs.FRLog.i
  */
-fun Any.logI(msg: String, tr: Throwable? = null) = FRLog.i(TAG, msg, tr)
+fun Any.frLogI(msg: String, tr: Throwable? = null) = FRLog.i(TAG, msg, tr)
 
 /**
  * Output a "WARNING" log message.
@@ -55,7 +55,7 @@ fun Any.logI(msg: String, tr: Throwable? = null) = FRLog.i(TAG, msg, tr)
  * @param tr An exception if necessary
  * @see org.fog_rock.frlogs.FRLog.w
  */
-fun Any.logW(msg: String, tr: Throwable? = null) = FRLog.w(TAG, msg, tr)
+fun Any.frLogW(msg: String, tr: Throwable? = null) = FRLog.w(TAG, msg, tr)
 
 /**
  * Output a "ERROR" log message.
@@ -64,4 +64,4 @@ fun Any.logW(msg: String, tr: Throwable? = null) = FRLog.w(TAG, msg, tr)
  * @param tr An exception
  * @see org.fog_rock.frlogs.FRLog.e
  */
-fun Any.logE(msg: String, tr: Throwable? = null) = FRLog.e(TAG, msg, tr)
+fun Any.frLogE(msg: String, tr: Throwable? = null) = FRLog.e(TAG, msg, tr)
