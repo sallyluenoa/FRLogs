@@ -21,8 +21,9 @@ minSdk = "24"
 # For Plugins or Libraries
 androidx-appcompat = "1.6.1"
 androidx-core-ktx = "1.9.0"
-androidx-espresso-core = "3.5.1"
-androidx-junit = "1.1.5"
+androidx-test-espresso-core = "3.5.1"
+androidx-test-junit = "1.1.5"
+androidx-test-truth = "1.5.0"
 com-android-gradle = "7.4.2"
 com-google-material = "1.8.0"
 junit = "4.13.2"
@@ -33,9 +34,13 @@ org-jetbrains-kotlin = "1.8.10"
 android-material = { group = "com.google.android.material", name = "material", version.ref = "com-google-material" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso-core" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
+androidx-test-truth = { group = "androidx.test.ext", name = "truth", version.ref = "androidx-test-truth" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+[bundles]
+androidx-test = [ "androidx-test-espresso-core", "androidx-test-junit", "androidx-test-truth" ]
 
 [plugins]
 android-app-gradle = { id = "com.android.application", version.ref = "com-android-gradle" }
