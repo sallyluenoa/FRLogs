@@ -30,6 +30,7 @@ object FRLog {
      * Set a customized log provider.
      * @param provider A log provider that you customized
      */
+    @JvmStatic
     fun setProvider(provider: FRLogProvider) {
         this.provider = provider
     }
@@ -39,6 +40,7 @@ object FRLog {
      * The default provider is `FRDefaultLogProvider`.
      * @see org.fog_rock.frlogs.provider.FRDefaultLogProvider
      */
+    @JvmStatic
     fun resetProvider() {
         this.provider = FRDefaultLogProvider()
     }
@@ -50,6 +52,7 @@ object FRLog {
      * @param tr An exception if necessary
      */
     @JvmOverloads
+    @JvmStatic
     fun v(tag: String, msg: String, tr: Throwable? = null) {
         provider.v(tag, msg, tr)
     }
@@ -61,6 +64,7 @@ object FRLog {
      * @param tr An exception if necessary
      */
     @JvmOverloads
+    @JvmStatic
     fun d(tag: String, msg: String, tr: Throwable? = null) {
         provider.d(tag, msg, tr)
     }
@@ -72,6 +76,7 @@ object FRLog {
      * @param tr An exception if necessary
      */
     @JvmOverloads
+    @JvmStatic
     fun i(tag: String, msg: String, tr: Throwable? = null) {
         provider.i(tag, msg, tr)
     }
@@ -83,6 +88,7 @@ object FRLog {
      * @param tr An exception if necessary
      */
     @JvmOverloads
+    @JvmStatic
     fun w(tag: String, msg: String, tr: Throwable? = null) {
         provider.w(tag, msg, tr)
     }
@@ -94,6 +100,7 @@ object FRLog {
      * @param tr An exception if necessary
      */
     @JvmOverloads
+    @JvmStatic
     fun e(tag: String, msg: String, tr: Throwable? = null) {
         provider.e(tag, msg, tr)
     }
