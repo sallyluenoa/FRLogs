@@ -22,12 +22,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
+ * A custom log provider with exceptions.
  * @see org.fog_rock.frlogs.FRLogJavaTest
  */
 public class FRLogJavaWithExceptionsTestProvider extends FRDefaultLogProvider {
 
     private final Class<?> exClazz;
 
+    /**
+     * @param exClazz An expected class type of the exception
+     */
     public FRLogJavaWithExceptionsTestProvider(final Class<?> exClazz) {
         super();
         this.exClazz = exClazz;

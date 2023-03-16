@@ -27,11 +27,17 @@ import java.util.List;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+/**
+ * Tests for Java codes.
+ */
 @RunWith(AndroidJUnit4.class)
 public class FRLogJavaTest {
 
     private static final String TAG = FRLogJavaTest.class.getSimpleName();
 
+    /**
+     * Use the default log provider.
+     */
     @Test
     public void log_default() {
         FRLog.resetProvider();
@@ -42,6 +48,10 @@ public class FRLogJavaTest {
         FRLog.e(TAG, "This is the default ERROR log.");
     }
 
+    /**
+     * Use a custom log provider without exceptions.
+     * @see org.fog_rock.frlogs.provider.FRLogJavaWithoutExceptionsTestProvider
+     */
     @Test
     public void log_withoutExceptions() {
         FRLog.setProvider(new FRLogJavaWithoutExceptionsTestProvider());
@@ -52,6 +62,10 @@ public class FRLogJavaTest {
         FRLog.e(TAG, "This is the ERROR log without exceptions.");
     }
 
+    /**
+     * Use a custom log provider with an exception `IndexOutOfBoundsException`.
+     * @see org.fog_rock.frlogs.provider.FRLogJavaWithExceptionsTestProvider
+     */
     @Test
     public void log_withIndexOutOfBoundsException() {
         FRLog.setProvider(new FRLogJavaWithExceptionsTestProvider(IndexOutOfBoundsException.class));
@@ -70,6 +84,10 @@ public class FRLogJavaTest {
         }
     }
 
+    /**
+     * Use a custom log provider with an exception `NumberFormatException`.
+     * @see org.fog_rock.frlogs.provider.FRLogJavaWithExceptionsTestProvider
+     */
     @Test
     public void log_withNumberFormatException() {
         FRLog.setProvider(new FRLogJavaWithExceptionsTestProvider(NumberFormatException.class));

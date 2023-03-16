@@ -19,6 +19,7 @@ package org.fog_rock.frlogs.provider
 import com.google.common.truth.Truth
 
 /**
+ * A custom log provider with exceptions.
  * @param exClazz An expected class type of the exception
  * @see org.fog_rock.frlogs.FRLogKtxTest.log_withIndexOutOfBoundsException
  * @see org.fog_rock.frlogs.FRLogKtxTest.log_withNumberFormatException

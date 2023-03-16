@@ -19,6 +19,7 @@ package org.fog_rock.frlogs.provider
 import com.google.common.truth.Truth
 
 /**
+ * A custom log provider without exceptions.
  * @see org.fog_rock.frlogs.FRLogKtxTest.log_withoutExceptions
  */
 class FRLogKtxWithoutExceptionsTestProvider : FRDefaultLogProvider() {

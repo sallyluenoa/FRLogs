@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
+ * A custom log provider without exceptions.
  * @see org.fog_rock.frlogs.FRLogJavaTest
  */
 public class FRLogJavaWithoutExceptionsTestProvider extends FRDefaultLogProvider {

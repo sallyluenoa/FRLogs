@@ -22,9 +22,15 @@ import org.fog_rock.frlogs.provider.FRLogKtxWithoutExceptionsTestProvider
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Tests for Kotlin codes.
+ */
 @RunWith(AndroidJUnit4::class)
 class FRLogKtxTest {
 
+    /**
+     * Use the default log provider.
+     */
     @Test
     fun log_default() {
         FRLog.resetProvider()
@@ -35,6 +41,10 @@ class FRLogKtxTest {
         frLogE("This is the default ERROR log.")
     }
 
+    /**
+     * Use a custom log provider without exceptions.
+     * @see org.fog_rock.frlogs.provider.FRLogKtxWithoutExceptionsTestProvider
+     */
     @Test
     fun log_withoutExceptions() {
         FRLog.setProvider(FRLogKtxWithoutExceptionsTestProvider())
@@ -45,6 +55,10 @@ class FRLogKtxTest {
         frLogE("This is the ERROR log without exceptions.")
     }
 
+    /**
+     * Use a custom log provider with an exception `IndexOutOfBoundsException`.
+     * @see org.fog_rock.frlogs.provider.FRLogKtxWithExceptionsTestProvider
+     */
     @Test
     fun log_withIndexOutOfBoundsException() {
         FRLog.setProvider(FRLogKtxWithExceptionsTestProvider(IndexOutOfBoundsException::class.java))
@@ -63,6 +77,10 @@ class FRLogKtxTest {
         }
     }
 
+    /**
+     * Use a custom log provider with an exception `NumberFormatException`.
+     * @see org.fog_rock.frlogs.provider.FRLogKtxWithExceptionsTestProvider
+     */
     @Test
     fun log_withNumberFormatException() {
         FRLog.setProvider(FRLogKtxWithExceptionsTestProvider(NumberFormatException::class.java))
