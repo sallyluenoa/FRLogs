@@ -43,7 +43,7 @@ public class FRLogJavaWithExceptionsTestProvider extends FRDefaultLogProvider {
 
     @Override
     public void d(@NonNull String tag, @NonNull String msg, @Nullable Throwable tr) {
-        super.v(tag, msg, tr);
+        super.d(tag, msg, tr);
         Truth.assertThat(tag).isEqualTo("FRLogJavaTest");
         Truth.assertThat(msg).isEqualTo("This is the DEBUG log with an exception.");
         Truth.assertThat(tr).isInstanceOf(exClazz);
@@ -51,7 +51,7 @@ public class FRLogJavaWithExceptionsTestProvider extends FRDefaultLogProvider {
 
     @Override
     public void i(@NonNull String tag, @NonNull String msg, @Nullable Throwable tr) {
-        super.v(tag, msg, tr);
+        super.i(tag, msg, tr);
         Truth.assertThat(tag).isEqualTo("FRLogJavaTest");
         Truth.assertThat(msg).isEqualTo("This is the INFO log with an exception.");
         Truth.assertThat(tr).isInstanceOf(exClazz);
@@ -59,7 +59,7 @@ public class FRLogJavaWithExceptionsTestProvider extends FRDefaultLogProvider {
 
     @Override
     public void w(@NonNull String tag, @NonNull String msg, @Nullable Throwable tr) {
-        super.v(tag, msg, tr);
+        super.w(tag, msg, tr);
         Truth.assertThat(tag).isEqualTo("FRLogJavaTest");
         Truth.assertThat(msg).isEqualTo("This is the WARNING log with an exception.");
         Truth.assertThat(tr).isInstanceOf(exClazz);
@@ -67,7 +67,7 @@ public class FRLogJavaWithExceptionsTestProvider extends FRDefaultLogProvider {
 
     @Override
     public void e(@NonNull String tag, @NonNull String msg, @Nullable Throwable tr) {
-        super.v(tag, msg, tr);
+        super.e(tag, msg, tr);
         Truth.assertThat(tag).isEqualTo("FRLogJavaTest");
         Truth.assertThat(msg).isEqualTo("This is the ERROR log with an exception.");
         Truth.assertThat(tr).isInstanceOf(exClazz);
