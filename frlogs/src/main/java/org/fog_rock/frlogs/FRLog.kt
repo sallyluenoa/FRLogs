@@ -28,11 +28,19 @@ object FRLog {
 
     /**
      * Set a customized log provider.
-     * The default provider is `FRDefaultLogProvider`.
      * @param provider A log provider that you customized
      */
     fun setProvider(provider: FRLogProvider) {
         this.provider = provider
+    }
+
+    /**
+     * Reset a log provider.
+     * The default provider is `FRDefaultLogProvider`.
+     * @see org.fog_rock.frlogs.provider.FRDefaultLogProvider
+     */
+    fun resetProvider() {
+        this.provider = FRDefaultLogProvider()
     }
 
     /**
