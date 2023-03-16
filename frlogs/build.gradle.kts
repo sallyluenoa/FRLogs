@@ -32,6 +32,7 @@ object ModuleConfigs {
 plugins {
     alias(libs.plugins.android.lib.gradle)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.dokka)
 }
 
 android {
@@ -64,10 +65,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.bundles.androidx.test)
 }

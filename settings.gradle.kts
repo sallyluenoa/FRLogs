@@ -29,5 +29,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "FRLogs"
-include(":sample")
 include(":frlogs")
