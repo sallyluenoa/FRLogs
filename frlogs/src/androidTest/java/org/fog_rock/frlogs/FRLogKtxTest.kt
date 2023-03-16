@@ -17,7 +17,7 @@
 package org.fog_rock.frlogs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.fog_rock.frlogs.provider.FRLogKtxWithExceptionTestProvider
+import org.fog_rock.frlogs.provider.FRLogKtxWithExceptionsTestProvider
 import org.fog_rock.frlogs.provider.FRLogKtxWithoutExceptionsTestProvider
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,7 +25,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class FRLogKtxTest {
 
-    @Test fun default() {
+    @Test
+    fun log_default() {
         FRLog.resetProvider()
         frLogV("This is the default VERBOSE log.")
         frLogD("This is the default DEBUG log.")
@@ -34,7 +35,8 @@ class FRLogKtxTest {
         frLogE("This is the default ERROR log.")
     }
 
-    @Test fun withoutExceptions() {
+    @Test
+    fun log_withoutExceptions() {
         FRLog.setProvider(FRLogKtxWithoutExceptionsTestProvider())
         frLogV("This is the VERBOSE log without exceptions.")
         frLogD("This is the DEBUG log without exceptions.")
@@ -43,8 +45,9 @@ class FRLogKtxTest {
         frLogE("This is the ERROR log without exceptions.")
     }
 
-    @Test fun withIndexOutOfBoundsException() {
-        FRLog.setProvider(FRLogKtxWithExceptionTestProvider(IndexOutOfBoundsException::class.java))
+    @Test
+    fun log_withIndexOutOfBoundsException() {
+        FRLog.setProvider(FRLogKtxWithExceptionsTestProvider(IndexOutOfBoundsException::class.java))
         val list = listOf(0, 1, 2)
         val index = list.size
         try {
@@ -60,8 +63,9 @@ class FRLogKtxTest {
         }
     }
 
-    @Test fun withNumberFormatException() {
-        FRLog.setProvider(FRLogKtxWithExceptionTestProvider(NumberFormatException::class.java))
+    @Test
+    fun log_withNumberFormatException() {
+        FRLog.setProvider(FRLogKtxWithExceptionsTestProvider(NumberFormatException::class.java))
         val str = "string"
         try {
             // This string cannot be replaced by numeric values.

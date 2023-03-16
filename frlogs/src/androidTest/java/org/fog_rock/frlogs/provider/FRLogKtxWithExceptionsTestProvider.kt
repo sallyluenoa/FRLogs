@@ -20,10 +20,10 @@ import com.google.common.truth.Truth
 
 /**
  * @param exClazz An expected class type of the exception
- * @see org.fog_rock.frlogs.FRLogKtxTest.withIndexOutOfBoundsException
- * @see org.fog_rock.frlogs.FRLogKtxTest.withNumberFormatException
+ * @see org.fog_rock.frlogs.FRLogKtxTest.log_withIndexOutOfBoundsException
+ * @see org.fog_rock.frlogs.FRLogKtxTest.log_withNumberFormatException
  */
-class FRLogKtxWithExceptionTestProvider(private val exClazz: Class<*>) : FRDefaultLogProvider() {
+class FRLogKtxWithExceptionsTestProvider(private val exClazz: Class<*>) : FRDefaultLogProvider() {
 
     override fun v(tag: String, msg: String, tr: Throwable?) {
         super.v(tag, msg, tr)
