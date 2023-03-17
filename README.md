@@ -4,13 +4,13 @@ FRLogs is an Android library that provides easy output of log messages.
 The logs can usually be viewed in the Logcat.  
 You can also customize log output destination, such as file output or UI display.
 
-# How to Install
+## How to Install
 
-# How to Use
+## How to Use
 
 FRLogs supports both Kotlin and Java.
 
-## For Kotlin
+### For Kotlin
 
 For Kotlin, you can easily use with extension functions.
 
@@ -27,7 +27,7 @@ class KotlinSample {
 }
 ```
 
-## For Java
+### For Java
 
 For Java, you can use by calling the static methods of `FRLog` directly.
 
@@ -46,11 +46,11 @@ public class JavaSample {
 }
 ```
 
-# Releases
+## Releases
 
-# Documents
+## Documents
 
-# License
+## License
 
 This license is [Apache License 2.0](./LICENSE.txt).
 
