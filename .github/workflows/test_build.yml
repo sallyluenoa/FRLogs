@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - develop
-      - issues/4
 
 jobs:
   build:
