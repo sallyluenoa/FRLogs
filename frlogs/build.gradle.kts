@@ -14,35 +14,27 @@
  * limitations under the License.
  */
 
-object ModuleConfigs {
-    const val module = "FRLogs"
-    const val domain = "org.fog-rock"
-    const val release = "release"
-    const val debug = "debug"
-    val packageName get() = "${domain.replace('-', '_')}.${module.toLowerCase()}"
-
-    fun versionCode(project: Project): Int =
-        (project.findProperty("version.code") ?: "1").toString().toInt()
-
-    fun versionName(project: Project): String =
-        (project.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
-}
+val domain = "org.fog-rock"
+val release = "release"
+val Project.versionName: String get() = (this.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
+val Project.versionCode: Int get() = (this.findProperty("version.code") ?: "1").toString().toInt()
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.lib.gradle)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.dokka)
+    `maven-publish`
 }
 
 android {
-    namespace = ModuleConfigs.packageName
+    namespace = "${domain}.${project.name}".replace('-', '_')
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
         base {
-            archivesName.set("${ModuleConfigs.module}-${ModuleConfigs.versionName(project)}.${ModuleConfigs.versionCode(project)}")
+            archivesName.set("${project.name}-${project.versionName}.${project.versionCode}")
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -50,7 +42,7 @@ android {
     }
 
     buildTypes {
-        getByName(ModuleConfigs.release) {
+        getByName(release) {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -62,9 +54,36 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+    publishing {
+        singleVariant(release) {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     androidTestImplementation(libs.bundles.androidx.test)
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/sallyluenoa/${rootProject.name}")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "${domain}.${project.name}"
+            artifactId = project.name
+            version = project.versionName
+            artifact("${buildDir}/outputs/aar/${project.name}-${project.versionName}.${project.versionCode}-release.aar")
+        }
+    }
 }
