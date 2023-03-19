@@ -43,15 +43,16 @@ jobs:
           chmod +x gradlew
           ./gradlew dokkaHtml --no-daemon
           rm -fr ./docs/*
-          cp -r ./frextensions/build/dokka/html/* ./docs
-          sed -i -E "/^\s*<h1.*<\/h1>$/s/frextensions/FRExtensions v${{ steps.config_version.outputs.GLOBAL }}/g" ./docs/index.html
+          cp -r ./frlogs/build/dokka/html/* ./docs
+          sed -i -E "/^\s*<h1.*<\/h1>$/s/frlogs/FRLogs v${{ steps.config_version.outputs.GLOBAL }}/g" ./docs/index.html
           sed -i -E "s/[0-9]*\.[0-9]*\.[0-9]*/${{ steps.config_version.outputs.GLOBAL }}/g" ./README.md
 
       - name: Archive artifacts
         run: |
           mkdir ./archive
-          zip -r ./archive/release-build-artifacts.zip ./frlogs/build/outputs/aar/*.aar
-          zip ./archive/release-kdoc-artifacts.zip ./docs
+          cp ./frlogs/build/outputs/aar/*.aar ./archive
+          zip ./archive/release-build-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip ./archive/*.aar
+          zip -r ./archive/release-kdoc-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip ./docs
 
       - name: Add commit for update docs
         uses: EndBug/add-and-commit@v9
@@ -59,32 +60,12 @@ jobs:
           add: "['./README.md', './docs']"
           message: "[RELEASE DEPLOY v${{ steps.config_version.outputs.GLOBAL }}] Update README.md and KDoc."
 
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release with tag and upload assets
+        uses: softprops/action-gh-release@v1
         with:
+          name: Release v${{ steps.config_version.outputs.GLOBAL }}
           tag_name: v${{ steps.config_version.outputs.GLOBAL }}
-          release_name: Release v${{ steps.config_version.outputs.GLOBAL }}
-          commitish: main
-
-      - name: Upload release asset for build
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./archive/release-build-artifacts.zip
-          asset_name: release-build-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip
-          asset_content_type: application/zip
-
-      - name: Upload release asset for kdoc
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./archive/release-kdoc-artifacts.zip
-          asset_name: release-kdoc-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip
-          asset_content_type: application/zip
+          target_commitish: main
+          files: |
+            ./archive/release-build-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip
+            ./archive/release-kdoc-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip
