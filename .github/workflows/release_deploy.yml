@@ -1,0 +1,78 @@
+name: release deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Configure app version
+        id: config_version
+        run: |
+          echo ::set-output name=GLOBAL::$(cat ./_version.yml | grep -e '^global: [0-9]*\.[0-9]*\.[0-9]*$' | sed -e 's/global: //g')
+
+      - name: Check whether release note exists
+        run: |
+          if [ ! -e ./releases/release-notes-v${{ steps.config_version.outputs.GLOBAL }}.md ]; then
+            echo "Release note does not exist."
+            exit 1
+          fi
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Restore cache for Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build project with Gradle
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease publish --no-daemon -Pversion.name=${{ steps.config_version.outputs.GLOBAL }} -Pversion.code=$GITHUB_RUN_NUMBER
+
+      - name: Build kdoc with Gradle and update docs
+        run: |
+          chmod +x gradlew
+          ./gradlew dokkaHtml --no-daemon
+          rm -fr ./docs/*
+          cp -r ./frlogs/build/dokka/html/* ./docs
+          sed -i -E "/^\s*<h1.*<\/h1>$/s/frlogs/FRLogs v${{ steps.config_version.outputs.GLOBAL }}/g" ./docs/index.html
+          sed -i -E "s/[0-9]*\.[0-9]*\.[0-9]*/${{ steps.config_version.outputs.GLOBAL }}/g" ./README.md
+
+      - name: Archive artifacts
+        run: |
+          mkdir ./archive
+          cp ./frlogs/build/outputs/aar/*.aar ./archive
+          zip ./archive/release-build-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip ./archive/*.aar
+          zip -r ./archive/release-kdoc-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip ./docs
+
+      - name: Add commit for update docs
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "['./README.md', './docs']"
+          message: "[RELEASE DEPLOY v${{ steps.config_version.outputs.GLOBAL }}] Update README.md and KDoc."
+
+      - name: Create release with tag and upload assets
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release v${{ steps.config_version.outputs.GLOBAL }}
+          tag_name: v${{ steps.config_version.outputs.GLOBAL }}
+          target_commitish: main
+          files: |
+            ./archive/release-build-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip
+            ./archive/release-kdoc-artifacts-v${{ steps.config_version.outputs.GLOBAL }}.zip
