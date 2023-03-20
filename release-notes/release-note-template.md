@@ -1,4 +1,4 @@
-# Release Notes vX.X.X
+# Release Note vX.X.X
 
 ## Feature Implementations
 

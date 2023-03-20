@@ -16,6 +16,7 @@
 
 val domain = "org.fog-rock"
 val release = "release"
+val javaVersion = JavaVersion.VERSION_11
 val Project.versionName: String get() = (this.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
 val Project.versionCode: Int get() = (this.findProperty("version.code") ?: "1").toString().toInt()
 
@@ -36,11 +37,9 @@ android {
         base {
             archivesName.set("${project.name}-${project.versionName}.${project.versionCode}")
         }
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
     buildTypes {
         getByName(release) {
             isMinifyEnabled = false
@@ -48,11 +47,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = javaVersion.toString()
     }
     publishing {
         singleVariant(release) {
