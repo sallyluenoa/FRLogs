@@ -69,7 +69,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
-          ./gradlew publish --no-daemon
+          ./gradlew publish --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
 
       - name: Build kdoc with Gradle and update docs
         run: |
