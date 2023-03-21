@@ -1,4 +1,4 @@
-# Release Note vX.X.X
+# Release Note v1.0.0
 
 This is the first official release.
 

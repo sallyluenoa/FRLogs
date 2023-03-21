@@ -65,10 +65,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Build project with Gradle
+      - name: Build and publish project with Gradle
         run: |
           chmod +x gradlew
-          ./gradlew assembleRelease publish --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
+          ./gradlew assembleRelease --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
+          ./gradlew publish --no-daemon
 
       - name: Build kdoc with Gradle and update docs
         run: |
