@@ -1,0 +1,104 @@
+name: release deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Configure project name
+        id: config_project
+        run: |
+          echo "NAME=$(cat ./_config_project.yml | grep -e '^project_name: .*$' | sed -e 's/project_name: //g')" >> $GITHUB_OUTPUT
+
+      - name: Configure module name
+        id: config_module
+        run: |
+          proj_name="${{ steps.config_project.outputs.NAME }}"
+          echo "NAME=${proj_name,,}" >> $GITHUB_OUTPUT
+
+      - name: Configure version name
+        id: config_version
+        run: |
+          echo "NAME=$(cat ./_config_project.yml | grep -e '^version: .*$' | sed -e 's/version: //g')" >> $GITHUB_OUTPUT
+
+      - name: Validate configurations
+        run: |
+          if [ -z "${{ steps.config_project.outputs.NAME }}" ]; then
+            echo "Project name must not be empty."
+            exit 1
+          fi
+          if [ -z "${{ steps.config_module.outputs.NAME }}" ]; then
+            echo "Module name must not be empty."
+            exit 2
+          fi
+          if [ -z "${{ steps.config_version.outputs.NAME }}" ]; then
+            echo "Version name must not be empty."
+            exit 3
+          fi
+          if [ ! -e ./release-notes/release-note-v${{ steps.config_version.outputs.NAME }}.md ]; then
+            echo "Release note does not exist."
+            exit 4
+          fi
+          echo "Configurations are valid."
+          echo "project_name=${{ steps.config_project.outputs.NAME }}, module_name=${{ steps.config_module.outputs.NAME }}, version=${{ steps.config_version.outputs.NAME }}"
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Restore cache for Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build and publish project with Gradle
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
+          ./gradlew publish --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
+
+      - name: Build kdoc with Gradle and update docs
+        run: |
+          chmod +x gradlew
+          ./gradlew dokkaHtml --no-daemon
+          rm -fr ./docs/*
+          cp -r ./${{ steps.config_module.outputs.NAME }}/build/dokka/html/* ./docs
+          sed -i -E "/^\s*<h1.*<\/h1>$/s/${{ steps.config_module.outputs.NAME }}/${{ steps.config_project.outputs.NAME }} v${{ steps.config_version.outputs.NAME }}/g" ./docs/index.html
+          sed -i -E "s/[0-9]*\.[0-9]*\.[0-9]*/${{ steps.config_version.outputs.NAME }}/g" ./README.md
+
+      - name: Archive artifacts
+        run: |
+          mkdir ./archive
+          cp ./${{ steps.config_module.outputs.NAME }}/build/outputs/aar/*.aar ./archive
+          zip ./archive/release-build-artifacts-v${{ steps.config_version.outputs.NAME }}.zip ./archive/*.aar
+          zip -r ./archive/release-kdoc-artifacts-v${{ steps.config_version.outputs.NAME }}.zip ./docs
+
+      - name: Add commit for update docs
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "['./README.md', './docs']"
+          message: "[RELEASE DEPLOY v${{ steps.config_version.outputs.NAME }}] Update README.md and KDoc."
+
+      - name: Create release with tag and upload assets
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release v${{ steps.config_version.outputs.NAME }}
+          tag_name: v${{ steps.config_version.outputs.NAME }}
+          target_commitish: main
+          files: |
+            ./archive/release-build-artifacts-v${{ steps.config_version.outputs.NAME }}.zip
+            ./archive/release-kdoc-artifacts-v${{ steps.config_version.outputs.NAME }}.zip
