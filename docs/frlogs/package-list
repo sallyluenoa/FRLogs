@@ -1,0 +1,34 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:org.fog_rock.frlogs.provider////PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/index.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider///PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/index.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider/FRDefaultLogProvider/#/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/-f-r-default-log-provider.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider/d/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/d.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider/e/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/e.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider/i/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/i.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider/v/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/v.html
+$dokka.location:org.fog_rock.frlogs.provider/FRDefaultLogProvider/w/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-default-log-provider/w.html
+$dokka.location:org.fog_rock.frlogs.provider/FRLogProvider///PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-log-provider/index.html
+$dokka.location:org.fog_rock.frlogs.provider/FRLogProvider/d/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-log-provider/d.html
+$dokka.location:org.fog_rock.frlogs.provider/FRLogProvider/e/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-log-provider/e.html
+$dokka.location:org.fog_rock.frlogs.provider/FRLogProvider/i/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-log-provider/i.html
+$dokka.location:org.fog_rock.frlogs.provider/FRLogProvider/v/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-log-provider/v.html
+$dokka.location:org.fog_rock.frlogs.provider/FRLogProvider/w/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs.provider/-f-r-log-provider/w.html
+$dokka.location:org.fog_rock.frlogs////PointingToDeclaration/frlogs/org.fog_rock.frlogs/index.html
+$dokka.location:org.fog_rock.frlogs//TAG/kotlin.Any#/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-t-a-g.html
+$dokka.location:org.fog_rock.frlogs//frLogD/kotlin.Any#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/fr-log-d.html
+$dokka.location:org.fog_rock.frlogs//frLogE/kotlin.Any#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/fr-log-e.html
+$dokka.location:org.fog_rock.frlogs//frLogI/kotlin.Any#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/fr-log-i.html
+$dokka.location:org.fog_rock.frlogs//frLogV/kotlin.Any#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/fr-log-v.html
+$dokka.location:org.fog_rock.frlogs//frLogW/kotlin.Any#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/fr-log-w.html
+$dokka.location:org.fog_rock.frlogs/FRLog///PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/index.html
+$dokka.location:org.fog_rock.frlogs/FRLog/d/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/d.html
+$dokka.location:org.fog_rock.frlogs/FRLog/e/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/e.html
+$dokka.location:org.fog_rock.frlogs/FRLog/i/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/i.html
+$dokka.location:org.fog_rock.frlogs/FRLog/resetProvider/#/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/reset-provider.html
+$dokka.location:org.fog_rock.frlogs/FRLog/setProvider/#org.fog_rock.frlogs.provider.FRLogProvider/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/set-provider.html
+$dokka.location:org.fog_rock.frlogs/FRLog/v/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/v.html
+$dokka.location:org.fog_rock.frlogs/FRLog/w/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/frlogs/org.fog_rock.frlogs/-f-r-log/w.html
+org.fog_rock.frlogs
+org.fog_rock.frlogs.provider
+
