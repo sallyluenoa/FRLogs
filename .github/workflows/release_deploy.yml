@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -66,6 +66,8 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build and publish project with Gradle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease --no-daemon -Pversion.name=${{ steps.config_version.outputs.NAME }} -Pversion.code=$GITHUB_RUN_NUMBER
@@ -98,6 +100,7 @@ jobs:
         with:
           name: Release v${{ steps.config_version.outputs.NAME }}
           tag_name: v${{ steps.config_version.outputs.NAME }}
+          body_path: ./release-notes/release-note-v${{ steps.config_version.outputs.NAME }}.md
           target_commitish: main
           files: |
             ./archive/release-build-artifacts-v${{ steps.config_version.outputs.NAME }}.zip
