@@ -20,7 +20,6 @@ val javaVersion = JavaVersion.VERSION_11
 val Project.versionName: String get() = (this.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
 val Project.versionCode: Int get() = (this.findProperty("version.code") ?: "1").toString().toInt()
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.lib.gradle)
     alias(libs.plugins.kotlin.android)
