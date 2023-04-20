@@ -18,8 +18,9 @@ package org.fog_rock.frlogs
 
 /**
  * Get a simple class name as a "TAG".
+ * If the class is anonymous, the string "Anonymous Class" is returned.
  */
-val Any.TAG: String get() = this::class.java.simpleName
+val Any.TAG: String get() = this::class.java.simpleName.ifEmpty { "Anonymous Class" }
 
 /**
  * Output a "VERBOSE" log message.
