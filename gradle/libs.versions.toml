@@ -14,8 +14,7 @@
 
 [versions]
 # For own Project
-compileSdk = "33"
-targetSdk = "33"
+sdk = "33"
 minSdk = "24"
 
 # For Plugins or Libraries

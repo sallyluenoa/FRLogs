@@ -29,7 +29,7 @@ plugins {
 
 android {
     namespace = "${domain}.${project.name}".replace('-', '_')
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.sdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
