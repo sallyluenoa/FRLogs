@@ -11,7 +11,7 @@ You can also customize log output destination, such as file output or UI display
 You should create a GitHub personal access token to read the GitHub packages in your Android project.
 
 1. Open your personal GitHub account.
-2. Settings -> Developer Settings -> Personal access tokens -> Generate new token
+2. Settings -> Developer Settings -> Personal access tokens -> Token (classic) -> Generate new token
 3. Generate a new token. Scopes would be selected "read:packages" only.
 4. You should keep the created token.
 
@@ -89,7 +89,7 @@ Release notes are available [here](./release-notes/README.md).
 
 ## Documents
 
-[A latest version](./docs/index.html) can be read witch written with Kdoc formats.
+[A latest version](./docs/index.html) can be read witch written with Kdoc formats.  
 Old versions are available from Assets of the past releases.
 
 ## License
@@ -98,4 +98,4 @@ This license is [Apache License 2.0](./LICENSE.txt).
 
 ## For Developers
 
-Please read [Memos for Developers](./developers.md).
+For more information, read [Memos for Developers](./developers.md).

@@ -16,11 +16,10 @@
 
 val domain = "org.fog-rock"
 val release = "release"
-val javaVersion = JavaVersion.VERSION_11
+val javaVersion = JavaVersion.VERSION_17
 val Project.versionName: String get() = (this.findProperty("version.name") ?: "0.0.1-SNAPSHOT").toString()
 val Project.versionCode: Int get() = (this.findProperty("version.code") ?: "1").toString().toInt()
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.lib.gradle)
     alias(libs.plugins.kotlin.android)
@@ -30,7 +29,7 @@ plugins {
 
 android {
     namespace = "${domain}.${project.name}".replace('-', '_')
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.sdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()

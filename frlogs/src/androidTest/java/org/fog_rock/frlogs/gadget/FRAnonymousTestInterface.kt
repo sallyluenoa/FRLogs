@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 SallyLueNoa
+ * Copyright (c) 2023 SallyLueNoa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.android.lib.gradle) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.kotlin.dokka) apply false
+package org.fog_rock.frlogs.gadget
+
+interface FRAnonymousTestInterface {
+    fun call()
 }

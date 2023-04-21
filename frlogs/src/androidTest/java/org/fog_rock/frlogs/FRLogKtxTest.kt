@@ -17,6 +17,8 @@
 package org.fog_rock.frlogs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.fog_rock.frlogs.gadget.FRAnonymousTestInterface
+import org.fog_rock.frlogs.provider.FRLogKtxWithAnonymousTestProvider
 import org.fog_rock.frlogs.provider.FRLogKtxWithExceptionsTestProvider
 import org.fog_rock.frlogs.provider.FRLogKtxWithoutExceptionsTestProvider
 import org.junit.Test
@@ -96,5 +98,25 @@ class FRLogKtxTest {
             frLogW("This is the WARNING log with an exception.", e)
             frLogE("This is the ERROR log with an exception.", e)
         }
+    }
+
+    /**
+     * Use a custom log provider with anonymous class.
+     * @see org.fog_rock.frlogs.provider.FRLogKtxWithAnonymousTestProvider
+     * @see org.fog_rock.frlogs.gadget.FRAnonymousTestInterface
+     */
+    @Test
+    fun log_withAnonymousClass() {
+        FRLog.setProvider(FRLogKtxWithAnonymousTestProvider())
+        val anonymous = object : FRAnonymousTestInterface {
+            override fun call() {
+                frLogV("This is the VERBOSE log in the anonymous class.")
+                frLogD("This is the DEBUG log in the anonymous class.")
+                frLogI("This is the INFO log in the anonymous class.")
+                frLogW("This is the WARNING log in the anonymous class.")
+                frLogE("This is the ERROR log in the anonymous class.")
+            }
+        }
+        anonymous.call()
     }
 }
