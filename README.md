@@ -40,7 +40,7 @@ Open the Gradle file of the module and add the following dependency, then sync y
 The library will be installed in your project.
 
 ```Gradle
-implementation("org.fog-rock.frlogs:frlogs:1.0.0")
+implementation("org.fog-rock.frlogs:frlogs:1.0.1")
 ```
 
 ## How to Use
